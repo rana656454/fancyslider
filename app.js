@@ -8,6 +8,17 @@ const sliderContainer = document.getElementById('sliders');
 let sliders = [];
 
 
+
+function myFunction(event,img1) {
+ console.log("amare dobule click marse")
+ console.log(img1)
+ document.getElementById("single-viewer").innerHTML=`<img class="img-fluid img-thumbnail single-img-viewer" src="${img1}">`
+ //document.getElementById("images-view-container").style.display="none"
+
+}
+
+
+
 // If this key doesn't work
 // Find the name in the url and go to their website
 // to create your own api key
@@ -27,7 +38,7 @@ const showImages = (images) => {
     
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-    div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+    div.innerHTML = ` <img class="img-fluid img-thumbnail" ondblclick= myFunction(event,"${image.webformatURL}") onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
     
   })
@@ -71,6 +82,7 @@ const createSlider = () => {
     return;
   }
   // crate slider previous next area
+  document.getElementById("single-viewer").innerHTML=""
   sliderContainer.innerHTML = '';
   const prevNext = document.createElement('div');
   prevNext.className = "prev-next d-flex w-100 justify-content-between align-items-center";

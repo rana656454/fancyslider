@@ -64,3 +64,13 @@ img {
     width: 90%;
   }
 }
+
+#single-viewer{
+  margin-left: 300px;
+}
+
+.single-img-viewer{
+width: 600px;
+height: 350px;
+
+}
