@@ -123,7 +123,7 @@ if(slideType=="selected")
   }
 
   else{
-    alert(" sorry sir! duration time cannot be negative.")  
+    alert(" sorry sir! duration time cannot be negative or null plz enter any positive duration")  
     document.getElementById("sliders-dot").innerHTML=""
     sliderContainer.innerHTML=""
   }
