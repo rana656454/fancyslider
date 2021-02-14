@@ -10,7 +10,7 @@ let sliders = [];
 let allsliders = []
 
 
-function myFunction(event,img1) {
+function previewImage(event,img1) {
  console.log("amare dobule click marse")
  console.log(img1)
  document.getElementById("single-viewer").innerHTML=`<img class="img-fluid img-thumbnail single-img-viewer" src="${img1}">`
@@ -39,7 +39,7 @@ const showImages = (images) => {
     
     let div = document.createElement('div');
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
-    div.innerHTML = ` <img class="img-fluid img-thumbnail" ondblclick= myFunction(event,"${image.webformatURL}") onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
+    div.innerHTML = ` <img class="img-fluid img-thumbnail" ondblclick= previewImage(event,"${image.webformatURL}") onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
     allsliders.push(image.webformatURL)
     
@@ -91,6 +91,8 @@ if(slideType=="selected")
 }
 
   // crate slider previous next area
+  const duration = document.getElementById('duration').value;
+  if (duration>0){
   document.getElementById("single-viewer").innerHTML=""
   sliderContainer.innerHTML = '';
   const prevNext = document.createElement('div');
@@ -105,8 +107,8 @@ if(slideType=="selected")
   // hide image aria
   imagesArea.style.display = 'none';
   //const duration = document.getElementById('duration').value || 1000;
-  const duration = document.getElementById('duration').value;
-  if (duration>0){
+  
+
     imgArray.forEach(slide => {
       let item = document.createElement('div')
       item.className = "slider-item";
