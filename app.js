@@ -3,10 +3,11 @@ const gallery = document.querySelector('.gallery');
 const galleryHeader = document.querySelector('.gallery-header');
 const searchBtn = document.getElementById('search-btn');
 const sliderBtn = document.getElementById('create-slider');
+const allsliderBtn = document.getElementById("create-all-slider")
 const sliderContainer = document.getElementById('sliders');
 // selected image 
 let sliders = [];
-
+let allsliders = []
 
 
 function myFunction(event,img1) {
@@ -40,6 +41,7 @@ const showImages = (images) => {
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
     div.innerHTML = ` <img class="img-fluid img-thumbnail" ondblclick= myFunction(event,"${image.webformatURL}") onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
+    allsliders.push(image.webformatURL)
     
   })
 
@@ -75,12 +77,19 @@ var timer
 
 
 
-const createSlider = () => {
+const createSlider = (imgArray,slideType) => {
   // check slider image length
+
+
+if(slideType=="selected")
+{
   if (sliders.length < 2) {
     alert('Select at least 2 image.')
     return;
   }
+
+}
+
   // crate slider previous next area
   document.getElementById("single-viewer").innerHTML=""
   sliderContainer.innerHTML = '';
@@ -98,7 +107,7 @@ const createSlider = () => {
   //const duration = document.getElementById('duration').value || 1000;
   const duration = document.getElementById('duration').value;
   if (duration>0){
-    sliders.forEach(slide => {
+    imgArray.forEach(slide => {
       let item = document.createElement('div')
       item.className = "slider-item";
       item.innerHTML = `<img class="w-100"
@@ -114,14 +123,14 @@ const createSlider = () => {
   }
 
   else{
-    alert(" sorry sir! duration time cannot be negative.")
+    alert(" sorry sir! duration time cannot be negative.")  
+    document.getElementById("sliders-dot").innerHTML=""
+    sliderContainer.innerHTML=""
   }
 
 
 
 }
-
-
 
 
 
@@ -167,9 +176,19 @@ searchBtn.addEventListener('click', function () {
   const search = document.getElementById('search');
   getImages(search.value)
   sliders.length = 0;
+  allsliders.length=0;
 })
 
 
 sliderBtn.addEventListener('click', function () {
-  createSlider()
+  createSlider(sliders,"selected")
 })
+
+
+
+   allsliderBtn.addEventListener('click', function () {
+
+   createSlider(allsliders,"all")
+  
+})
+
